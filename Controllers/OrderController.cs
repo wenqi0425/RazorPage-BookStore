@@ -6,7 +6,7 @@ using System;
 
 namespace BookStore.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class OrderController : Controller
     {
         private readonly BookStoreContext _context;
@@ -16,6 +16,28 @@ namespace BookStore.Controllers
         {
             _context = context;
             _cart = cart;
+        }
+
+        public void CreateOrder(Order order)
+        {
+            order.OrderPlaced = DateTime.Now;
+
+            var cartItems = _cart.CartItems;
+
+            foreach (var item in cartItems)
+            {
+                var orderItem = new OrderItem()
+                {
+                    Quantity = item.Quantity,
+                    BookId = item.Book.Id,
+                    OrderId = order.Id,
+                    Price = item.Book.Price * item.Quantity
+                };
+                order.OrderItems.Add(orderItem);
+                order.OrderTotal += orderItem.Price;
+            }
+            _context.Orders.Add(order);
+            _context.SaveChanges();
         }
 
         public IActionResult Checkout()
@@ -47,28 +69,6 @@ namespace BookStore.Controllers
         public IActionResult CheckoutComplete(Order order)
         {
             return View(order);
-        }
-
-        public void CreateOrder(Order order)
-        {
-            order.OrderPlaced = DateTime.Now;
-
-            var cartItems = _cart.CartItems;
-
-            foreach (var item in cartItems)
-            {
-                var orderItem = new OrderItem()
-                {
-                    Quantity = item.Quantity,
-                    BookId = item.Book.Id,
-                    OrderId = order.Id,
-                    Price = item.Book.Price * item.Quantity
-                };
-                order.OrderItems.Add(orderItem);
-                order.OrderTotal += orderItem.Price;
-            }
-            _context.Orders.Add(order);
-            _context.SaveChanges();
         }
     }
 }
