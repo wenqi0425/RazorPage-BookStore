@@ -52,7 +52,7 @@ namespace BookStore
                 .AddEntityFrameworkStores<BookStoreContext>();*/
 
             services.AddDefaultIdentity<DefaultUser>()
-                //.AddRoles<IdentityRole>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BookStoreContext>();
 
             /*services.AddTransient<IEmailSender, EmailSender>();*/
