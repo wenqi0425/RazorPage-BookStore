@@ -31,13 +31,21 @@ namespace BookStore.Models
 
             return new Cart(context) { Id = cartId };
         }
+
+        public List<CartItem> GetAllCartItems()
+        {
+            return CartItems ??
+                (CartItems = _context.CartItems.Where(ci => ci.CartId == Id)
+                    .Include(ci => ci.Book)
+                    .ToList());
+        }
         /*
         public CartItem GetCartItem(Book book)
         {
             return _context.CartItems.SingleOrDefault(ci =>
                 ci.Book.Id == book.Id && ci.CartId == Id);
         }
-
+        
         public void AddToCart(Book book, int quantity)
         {
             var cartItem = GetCartItem(book);
@@ -118,13 +126,7 @@ namespace BookStore.Models
             _context.SaveChanges();
         }
 
-        public List<CartItem> GetAllCartItems()
-        {
-            return CartItems ??
-                (CartItems = _context.CartItems.Where(ci => ci.CartId == Id)
-                    .Include(ci => ci.Book)
-                    .ToList());
-        }
+        
 
         public int GetCartTotal()
         {
