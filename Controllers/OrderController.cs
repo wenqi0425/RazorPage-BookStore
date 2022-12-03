@@ -6,7 +6,7 @@ using System;
 
 namespace BookStore.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly BookStoreContext _context;

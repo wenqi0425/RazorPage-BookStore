@@ -6,6 +6,7 @@ namespace BookStore.Models
 {
     public class DefaultUser : IdentityUser
     {
+        /*
         [PersonalData]
         [Required]
         public string FirstName { get; set; }
@@ -28,6 +29,6 @@ namespace BookStore.Models
 
         [PersonalData]
         [DataType(DataType.Date)]
-        public DateTime UserCreationDate { get; set; } = DateTime.Now;
+        public DateTime UserCreationDate { get; set; } = DateTime.Now;*/
     }
 }

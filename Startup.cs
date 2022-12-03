@@ -31,10 +31,10 @@ namespace BookStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //services.AddRazorPages();
+            services.AddRazorPages();
 
-            /*
-            services.AddAuthentication().AddGoogle(options =>
+            
+            /*services.AddAuthentication().AddGoogle(options =>
             {
                 IConfigurationSection googleAuthNSection =
                     Configuration.GetSection("Authentication:Google");
@@ -46,11 +46,11 @@ namespace BookStore
             services.AddDbContext<BookStoreContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BookStoreContext")));
 
-            /*services.AddDefaultIdentity<DefaultUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<DefaultUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BookStoreContext>();
 
-            services.AddTransient<IEmailSender, EmailSender>();*/
+            /*services.AddTransient<IEmailSender, EmailSender>();*/
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<Cart>(sp => Cart.GetCart(sp));
 
@@ -82,7 +82,7 @@ namespace BookStore
 
             app.UseRouting();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSession();
@@ -92,7 +92,7 @@ namespace BookStore
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Store}/{action=Index}/{id?}");
-                //endpoints.MapRazorPages();
+                endpoints.MapRazorPages();
             });
         }
     }
