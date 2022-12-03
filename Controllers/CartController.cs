@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace BookStore.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class CartController : Controller
     {
         private readonly BookStoreContext _context;

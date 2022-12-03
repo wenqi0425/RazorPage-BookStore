@@ -50,8 +50,8 @@ namespace BookStore
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BookStoreContext>();
 
-            services.AddTransient<IEmailSender, EmailSender>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();*/
+            services.AddTransient<IEmailSender, EmailSender>();*/
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<Cart>(sp => Cart.GetCart(sp));
 
             services.AddDistributedMemoryCache();

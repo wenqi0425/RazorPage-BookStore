@@ -39,7 +39,7 @@ namespace BookStore.Models
                     .Include(ci => ci.Book)
                     .ToList());
         }
-        /*
+        
         public CartItem GetCartItem(Book book)
         {
             return _context.CartItems.SingleOrDefault(ci =>
@@ -124,9 +124,7 @@ namespace BookStore.Models
             _context.CartItems.RemoveRange(cartItems);
 
             _context.SaveChanges();
-        }
-
-        
+        }        
 
         public int GetCartTotal()
         {
@@ -134,6 +132,6 @@ namespace BookStore.Models
                 .Where(ci => ci.CartId == Id)
                 .Select(ci => ci.Book.Price * ci.Quantity)
                 .Sum();
-        }*/
+        }
     }
 }
