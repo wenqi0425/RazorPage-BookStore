@@ -74,6 +74,7 @@ namespace BookStore.Controllers
             {
                 Id = role.Id,
                 RoleName = role.Name
+
             };
 
             foreach (var user in _userManager.Users)
