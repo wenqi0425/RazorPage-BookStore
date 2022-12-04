@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     public class StoreController : Controller
     {
         private readonly BookStoreContext _context;
@@ -16,7 +16,6 @@ namespace BookStore.Controllers
 
         }
 
-        [AllowAnonymous]
         // GET: Books
         public async Task<IActionResult> Index()
         {
