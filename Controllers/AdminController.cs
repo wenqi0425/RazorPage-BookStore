@@ -118,7 +118,7 @@ namespace BookStore.Controllers
             }
         }
 
-        /*
+        
         [HttpGet]
         public async Task<IActionResult> EditUsersInRole(string id)
         {
@@ -156,6 +156,6 @@ namespace BookStore.Controllers
             }
 
             return View(model);
-        }*/        
+        }        
     }
 }
